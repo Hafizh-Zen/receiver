@@ -97,3 +97,14 @@ Rust takes a stricter approach to memory safety compared to languages like Java.
 Instead, Rust requires the use of safe wrappers like RwLock<> or Mutex<> to manage shared mutable state. This ensures that all access is properly synchronized, making your program more stable and less prone to hard-to-find bugs.
 
 #### Reflection Subscriber-2
+
+1. Did you explore anything beyond the tutorial steps, like src/lib.rs?
+Yeah, I checked out src/lib.rs to see how the app is set up behind the scenes. I noticed it uses the AppConfig struct along with dotenvy and Figment to handle environment variables. It’s a pretty neat setup because it keeps the config flexible—you don’t have to hardcode anything, and it’s easy to switch between environments.
+
+2. How does the Observer pattern help with multiple subscribers? And what about running more than one main app instance?
+The Observer pattern really helps here—it makes adding new subscribers simple. Each receiver just registers itself, and it’ll automatically get notifications. You don’t need to change the core logic, which keeps things clean and scalable.
+
+Running multiple main instances (the publishers) is a bit trickier, though. You’d need to make sure they’re in sync so that all subscribers still get the right updates. But as long as each receiver is connected to the correct publisher, it’s doable.
+
+3. Did you write your own tests or update the Postman collection? Was it useful?
+Yeah, I wrote some tests for NotificationRepository and NotificationService, just to make sure everything worked like it should and to catch any weird edge cases. I also cleaned up the Postman collection by adding clearer descriptions and example requests. It definitely helped, especially when working with others—it made testing and debugging way smoother.
