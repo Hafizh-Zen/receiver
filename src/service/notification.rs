@@ -94,4 +94,8 @@ use rocket::http::Status;
         let subscriber_request: Notification = NotificationRepository::add(payload);
         return Ok(subscriber_request);
     }
+
+    pub fn list_messages() -> Result<Vec<String>> {
+        return Ok(NotificationRepository::list_all_as_string());
+    }
  }
