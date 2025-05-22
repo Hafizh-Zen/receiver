@@ -86,4 +86,14 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 
+1. Why do we use RwLock<> instead of Mutex<>?
+In this tutorial, we use RwLock<> to manage access to the Vec of notifications because it allows multiple threads to read the data at the same time, as long as no one is writing to it. This is a big advantage in situations where reads happen more frequently than writes—like in this case—because it avoids unnecessary blocking and improves performance.
+
+On the other hand, Mutex<> only allows one thread at a time, even for reading. That means if several threads just want to read data, they’d still have to take turns, which can slow things down in read-heavy scenarios.
+
+2. Why doesn’t Rust allow direct mutation of static variables like Java does?
+Rust takes a stricter approach to memory safety compared to languages like Java. It enforces rules around ownership and borrowing to prevent issues like data races. Allowing direct modification of static variables—especially in multi-threaded environments—would break these guarantees and could lead to unpredictable behavior.
+
+Instead, Rust requires the use of safe wrappers like RwLock<> or Mutex<> to manage shared mutable state. This ensures that all access is properly synchronized, making your program more stable and less prone to hard-to-find bugs.
+
 #### Reflection Subscriber-2
